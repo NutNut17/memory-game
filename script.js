@@ -14,10 +14,13 @@ function startTimer(duration, display) {
 }
 
 function generateGrid() {
+
     const gridSize = document.getElementById('gridSize').value;
     const gridContainer = document.getElementById('gridContainer');
-    const char = document.getElementById('characterInput').value;
-    const lim = letterToNumber(char);
+    const char1 = document.getElementById('characterInput1').value;
+    const char2 = document.getElementById('characterInput2').value;
+    const max = letterToNumber(char2);
+    const min = letterToNumber(char1);
 
     gridContainer.innerHTML = ''; // Clear previous grid
 
@@ -55,7 +58,7 @@ function generateGrid() {
 
     for (let i = 0; i < gridSize * gridSize; i++) {
         
-        const randomIndex = Math.floor(Math.random() * lim);
+        const randomIndex = randomInt(min, max);
         const selectedImage = images[randomIndex];
 
         // Create a div with Bootstrap column class
@@ -112,5 +115,11 @@ function letterToNumber(letter) {
       return null; // Return null or an error for non-alphabet characters
     }
   }
+
+function randomInt(min, max) {
+    console.log(min, max);
+    console.log(Math.floor(Math.random() * (max - min + 1)) + min);
+return Math.floor(Math.random() * (max - min + 1)) + min - 1;
+}
 
 toggleGrid(true);  // Show grid initially
